@@ -45,9 +45,7 @@ static NSString *const SOURCE_FORMAT_DESCRIPTION = @"description";
   NSString *sourceType = request.parameters[@"format"] ?: SOURCE_FORMAT_XML;
   id result;
   if ([sourceType caseInsensitiveCompare:SOURCE_FORMAT_XML] == NSOrderedSame) {
-    NSArray<NSString *> *excludedAttributes = nil == request.parameters[@"excluded_attributes"]
-      ? nil
-      : [request.parameters[@"excluded_attributes"] componentsSeparatedByString:@","];
+    NSArray<NSString *> *excludedAttributes = @[@"visible"];
     result = nil == excludedAttributes
       ? application.fb_xmlRepresentation
       : [application fb_xmlRepresentationWithoutAttributes:(NSArray<NSString *> *)excludedAttributes];
